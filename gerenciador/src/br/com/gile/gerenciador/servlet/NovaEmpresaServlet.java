@@ -19,7 +19,8 @@ public class NovaEmpresaServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	//Foi sobrescrito o metodo doPost, onde nessa classe agora somente conseguimos usar esse método como post e não mais passando parametros pela URL
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Cadastrando nova Empresa");
 		String nomeDaEmpresa = request.getParameter("nome");
 		
