@@ -17,17 +17,26 @@ public class NovaEmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	//Foi sobrescrito o metodo doPost, onde nessa classe agora somente conseguimos usar esse método como post e não mais passando parametros pela URL
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	// Foi sobrescrito o metodo doPost, onde nessa classe agora somente conseguimos
+	// usar esse método como post e não mais passando parametros pela URL (GET)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		System.out.println("Cadastrando nova Empresa");
 		String nomeDaEmpresa = request.getParameter("nome");
 		
+		Empresa empresa = new Empresa();
+		empresa.setNome(nomeDaEmpresa);
+		
+		Banco banco = new Banco();
+		banco.adiciona(empresa);
+
 		PrintWriter out = response.getWriter();
 		out.println("<html>");
 		out.println("<body>");
-		out.println("Empresa " + nomeDaEmpresa+ " cadastrada com sucesso!");
+		out.println("Empresa " + nomeDaEmpresa + " cadastrada com sucesso!");
 		out.println("</body>");
 		out.println("</html>");
 	}
