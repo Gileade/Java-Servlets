@@ -12,6 +12,6 @@ System.out.println(nomeEmpresa);
 <title>Insert title here</title>
 </head>
 <body>
-Empresa <%= nomeEmpresa %>cadastrada com sucesso!
+Empresa ${ empresa } cadastrada com sucesso!
 </body>
 </html>
