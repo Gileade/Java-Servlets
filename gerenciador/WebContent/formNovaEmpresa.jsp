@@ -11,6 +11,7 @@
 	<!-- No action e passado o caminho do servlet a ser consumido e passado o metodo utilizado -->
 	<form action="${linkServletNovaEmpresa}" method="post"> 
 		Nome: <input type="text" name="nome"/> 
+		Data Abertura: <input type="text" name="data">
 		<input type="submit" />
 	</form>
 
