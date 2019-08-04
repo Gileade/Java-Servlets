@@ -7,7 +7,7 @@ import java.util.List;
 public class Banco {
 	private static List<Empresa> lista = new ArrayList<Empresa>();
 	private static Integer chaveSequencial = 1;
-	
+
 	static {
 		Empresa empresa = new Empresa();
 		empresa.setId(chaveSequencial++);
@@ -18,26 +18,37 @@ public class Banco {
 		Banco.lista.add(empresa);
 		Banco.lista.add(empresa2);
 	}
-	
+
 	public void adiciona(Empresa empresa) {
 		empresa.setId(Banco.chaveSequencial++);
 		lista.add(empresa);
 	}
-	
-	public List<Empresa> getEmpresas(){
+
+	public List<Empresa> getEmpresas() {
 		return Banco.lista;
 	}
 
 	public void removeEmpresa(Integer id) {
-		//É utilizado devido ao foreach nao poder percorrer e apagar diretamente um item que esta percorrendo
+		// É utilizado devido ao foreach nao poder percorrer e apagar diretamente um
+		// item que esta percorrendo
 		Iterator<Empresa> it = lista.iterator();
 
-	    while(it.hasNext()) { 
-	        Empresa emp = it.next();
+		while (it.hasNext()) {
+			Empresa emp = it.next();
 
-	        if(emp.getId() == id ) {
-	            it.remove();
-	        }
-	    }
+			if (emp.getId() == id) {
+				it.remove();
+			}
+		}
+	}
+
+	public Empresa buscaEmpresaPelaId(Integer id) {
+		for (Empresa empresa : lista) {
+			if (empresa.getId() == id) {
+				return empresa;
+			}
+
+		}
+		return null;
 	}
 }
