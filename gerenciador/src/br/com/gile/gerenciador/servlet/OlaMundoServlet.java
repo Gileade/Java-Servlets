@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 //Deve ser inserido essa annotation para saber onde sera acessada na URL
-@WebServlet(urlPatterns="/oi")
-public class OlaMundo extends HttpServlet{
+//Foi retirado pois está sendo chamado pelo webxml
+//@WebServlet(urlPatterns="/oi")
+public class OlaMundoServlet extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
