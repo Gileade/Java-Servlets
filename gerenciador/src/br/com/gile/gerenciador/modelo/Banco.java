@@ -1,4 +1,4 @@
-package br.com.gile.gerenciador.servlet;
+package br.com.gile.gerenciador.modelo;
 
 import java.util.ArrayList;
 import java.util.Iterator;
