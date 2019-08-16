@@ -13,6 +13,7 @@ import br.com.gile.gerenciador.acao.AlteraEmpresa;
 import br.com.gile.gerenciador.acao.ListaEmpresas;
 import br.com.gile.gerenciador.acao.MostraEmpresa;
 import br.com.gile.gerenciador.acao.NovaEmpresa;
+import br.com.gile.gerenciador.acao.NovaEmpresaForm;
 import br.com.gile.gerenciador.acao.RemoveEmpresa;
 
 @WebServlet("/entrada")
@@ -38,7 +39,10 @@ public class UnicaEntradaServlet extends HttpServlet {
 		} else if(paramAcao.equals("NovaEmpresa")) {
 		    NovaEmpresa acao = new NovaEmpresa();
 		    nome = acao.executa(request, response);
-		}      
+		} else if(paramAcao.equals("NovaEmpresaForm")) {
+		    NovaEmpresaForm acao = new NovaEmpresaForm();
+		    nome = acao.executa(request, response);
+		}     
 		
 		String [] tipoEEndereco = nome.split(":");
 		
