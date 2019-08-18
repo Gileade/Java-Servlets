@@ -41,7 +41,7 @@ public class UnicaEntradaServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/"+tipoEEndereco[1]);
 			rd.forward(request, response);	
 		}else {
-			response.sendRedirect(tipoEEndereco[1]);
+			response.sendRedirect("entrada?acao="+tipoEEndereco[1]);
 		}
 		
 	}

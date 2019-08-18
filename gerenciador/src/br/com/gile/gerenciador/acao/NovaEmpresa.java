@@ -34,7 +34,7 @@ public class NovaEmpresa implements Acao{
 		Banco banco = new Banco();
 		banco.adiciona(empresa);
 
-		return "redirect:entrada?acao=ListaEmpresas";
+		return "redirect:ListaEmpresas";
 	}
 
 }
