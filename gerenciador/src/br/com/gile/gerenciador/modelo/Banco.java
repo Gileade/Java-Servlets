@@ -28,8 +28,8 @@ public class Banco {
 		u1.setSenha("1234");
 		
 		Usuario u2 = new Usuario();
-		u1.setLogin("lucas");
-		u1.setSenha("1234");
+		u2.setLogin("lucas");
+		u2.setSenha("1234");
 		
 		Banco.listaUsuarios.add(u1);
 		Banco.listaUsuarios.add(u2);
@@ -70,6 +70,12 @@ public class Banco {
 
 	public Usuario existeUsuario(String login, String senha) {
 		for(Usuario usuario : listaUsuarios){
+			System.out.println(usuario.getLogin());
+			System.out.println(usuario.getSenha());
+			
+			System.out.println(login);
+			System.out.println(senha);
+			
 			if(usuario.ehIgual(login, senha)) {
 				return usuario;
 			}
