@@ -8,14 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.gile.gerenciador.acao.Acao;
-import br.com.gile.gerenciador.acao.AlteraEmpresa;
-import br.com.gile.gerenciador.acao.ListaEmpresas;
-import br.com.gile.gerenciador.acao.MostraEmpresa;
-import br.com.gile.gerenciador.acao.NovaEmpresa;
-import br.com.gile.gerenciador.acao.NovaEmpresaForm;
-import br.com.gile.gerenciador.acao.RemoveEmpresa;
 
 @WebServlet("/entrada")
 public class UnicaEntradaServlet extends HttpServlet {
@@ -23,8 +18,19 @@ public class UnicaEntradaServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String paramAcao = request.getParameter("acao");
-		String nomeDaClasse = "br.com.gile.gerenciador.acao." + paramAcao;
 		
+		HttpSession sessao = request.getSession();
+        boolean usuarioNaoEstaLogado = 
+            (sessao.getAttribute("usuarioLogado") == null);
+        boolean ehUmaAcaoProtegida = 
+            !(paramAcao.equals("Login") || paramAcao.equals("LoginForm"));
+
+        if(ehUmaAcaoProtegida && usuarioNaoEstaLogado) {
+            response.sendRedirect("entrada?acao=LoginForm");
+            return;
+        }
+		
+		String nomeDaClasse = "br.com.gile.gerenciador.acao." + paramAcao;
 		
 		String nome;
 		try {

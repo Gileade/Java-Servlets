@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<c:import url="logout-parcial.jsp" />
+	
 	<!-- No action e passado o caminho do servlet a ser consumido e passado o metodo utilizado -->
 	<form action="${linkEntradaServlet}" method="post"> 
 		Nome: <input type="text" name="nome"/> 
