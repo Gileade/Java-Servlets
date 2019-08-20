@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-Usuario Logado: ${usuarioLogado.login }
-
+<a href="entrada?acao=Logout">Sair</a>
 <br>
 <br>
 <br>
