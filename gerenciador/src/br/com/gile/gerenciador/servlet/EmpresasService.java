@@ -21,22 +21,30 @@ public class EmpresasService extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Empresa> empresas = new Banco().getEmpresas();
+		//Pega o que foi passado do servidor, para que saiba o que printar, se json ou xml
+		String valor = request.getHeader("Accept");
 		
-		//Transforma em XML
-		XStream xstream = new XStream();
-		xstream.alias("empresa", Empresa.class);//Visualmente não aparece mais o caminho (br.com.gile.gerenciador.modelo.empresa)
-		String xml = xstream.toXML(empresas);
+		if(valor.contains("xml")) {
+			//Transforma em XML
+			XStream xstream = new XStream();
+			xstream.alias("empresa", Empresa.class);//Visualmente não aparece mais o caminho (br.com.gile.gerenciador.modelo.empresa)
+			String xml = xstream.toXML(empresas);
+			
+			response.setContentType("application/xml");
+			response.getWriter().print(xml);	
+		}else if (valor.contains("json")) {
+			//Transforma em Json
+			Gson gson = new Gson();
+			String json = gson.toJson(empresas);
+			
+			response.setContentType("application/json");
+			response.getWriter().print(json);
+		}else {
+			response.setContentType("application/json");
+			response.getWriter().print("{'message':'no content'}");
+		}
 		
-		response.setContentType("application/xml");
-		response.getWriter().print(xml);
 		
-		
-		//Transforma em Json
-//		Gson gson = new Gson();
-//		String json = gson.toJson(empresas);
-//		
-//		response.setContentType("application/json");
-//		response.getWriter().print(json);
 		
 	}
 
