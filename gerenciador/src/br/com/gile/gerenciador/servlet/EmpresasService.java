@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.thoughtworks.xstream.XStream;
 
 import br.com.gile.gerenciador.modelo.Banco;
 import br.com.gile.gerenciador.modelo.Empresa;
@@ -21,11 +22,13 @@ public class EmpresasService extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Empresa> empresas = new Banco().getEmpresas();
 		
-		Gson gson = new Gson();
-		String json = gson.toJson(empresas);
+		//Transforma em XML
+		XStream xstream = new XStream();
+		xstream.alias("empresa", Empresa.class);//Visualmente não aparece mais o caminho (br.com.gile.gerenciador.modelo.empresa)
+		String xml = xstream.toXML(empresas);
 		
-		response.setContentType("application/json");
-		response.getWriter().print(json);
+		response.setContentType("application/xml");
+		response.getWriter().print(xml);
 		
 		
 		//Transforma em Json
